@@ -37,56 +37,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PokemonTheme {
-               App()
+
             }
         }
-    }
-}
-
-@Composable
-fun App() {
-    PokemonTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(
-                visible = showContent,
-                enter = scaleIn(initialScale = 0.9f) + fadeIn(),
-                exit  = scaleOut(targetScale = 0.9f) + fadeOut(),
-                label = "content-visibility"
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(painterResource(R.drawable.ic_international_pok_mon_logo), null)
-                    Text("Hello Sameer:")
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PokemonTheme {
-        Greeting("Android")
     }
 }
