@@ -92,50 +92,41 @@ fun PokemonListScreen(
 
 }
 
-
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
     hint: String = "",
     onSearch: (String) -> Unit = {}
 ) {
-    var text by remember {
-        mutableStateOf("")
-    }
+    var text by remember { mutableStateOf("") }
 
-    var isHintDisplayed by remember {
-        mutableStateOf(hint != "")
-    }
-
-    Box(modifier = modifier) {
-        BasicTextField(
-            value = text,
-            onValueChange = {
-                text = it
-                onSearch(it)
-            },
-            maxLines = 1,
-            singleLine = true,
-            textStyle = TextStyle(color = Color.Black),
-            modifier = Modifier
-                .fillMaxWidth()
-                .shadow(5.dp, CircleShape)
-                .background(Color.White, CircleShape)
-                .padding(horizontal = 20.dp, vertical = 12.dp)
-                .onFocusChanged {
-                    isHintDisplayed = it.isFocused != true && text.isEmpty()
+    BasicTextField(
+        value = text,
+        onValueChange = { newText ->
+            text = newText
+            onSearch(newText)
+        },
+        maxLines = 1,
+        singleLine = true,
+        textStyle = TextStyle(color = Color.Black),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .shadow(5.dp, CircleShape)
+            .background(Color.White, CircleShape)
+            .padding(horizontal = 20.dp, vertical = 12.dp),
+        decorationBox = { innerTextField ->
+            Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterStart) {
+                if (text.isEmpty() && hint.isNotEmpty()) {
+                    Text(
+                        text = hint,
+                        color = Color.LightGray
+                    )
                 }
-        )
-
-        if (isHintDisplayed) {
-            Text(
-                text = hint,
-                color = Color.LightGray,
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)
-            )
+                innerTextField()
+            }
         }
-    }
-
+    )
 }
 
 @Composable
