@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -76,6 +77,7 @@ fun PokemonDetailScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(dominantColor)
+            .navigationBarsPadding()
             .padding(bottom = 16.dp)
     ) {
 
@@ -95,7 +97,7 @@ fun PokemonDetailScreen(
                     top = topPadding + pokemonImageSize / 2f,
                     start = 16.dp,
                     end = 16.dp,
-                    bottom = 16.dp
+                    bottom = 32.dp
                 )
                 .shadow(10.dp, RoundedCornerShape(10.dp))
                 .clip(RoundedCornerShape(10.dp))
@@ -201,7 +203,7 @@ fun PokemonDetailStateWrapper(
             )
         }
     }
-    
+
 }
 
 
