@@ -182,7 +182,7 @@ fun PokemonDetailStateWrapper(
     loadingModifier: Modifier = Modifier
 ) {
 
-    when(pokemonInfo) {
+    when (pokemonInfo) {
         is Resource.Success -> {
             PokemonDetailSection(
                 pokemonInfo = pokemonInfo.data!!,
@@ -303,9 +303,10 @@ fun PokemonDetailDateSection(
             modifier = Modifier.weight(1f)
         )
 
-        Spacer(modifier = Modifier
-            .size(1.dp, sectionHeight)
-            .background(Color.LightGray)
+        Spacer(
+            modifier = Modifier
+                .size(1.dp, sectionHeight)
+                .background(Color.LightGray)
         )
 
         PokemonDetailDateItem(
@@ -329,8 +330,12 @@ fun PokemonDetailDateItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = modifier
-    ){
-        Icon(painter = dataIcon, contentDescription = null, tint = MaterialTheme.colorScheme.onSurface)
+    ) {
+        Icon(
+            painter = dataIcon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurface
+        )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "$dataValue$dataUnit",
@@ -359,7 +364,7 @@ fun PokemonStat(
         targetValue = if (animationPlayed) {
             stateValue / stateMaxValue.toFloat()
         } else 0f,
-        animationSpec = tween (
+        animationSpec = tween(
             animDuration,
             animDelay
         )
@@ -404,7 +409,7 @@ fun PokemonStat(
             )
         }
     }
-    
+
 }
 
 @Composable
